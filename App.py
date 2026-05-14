@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session, url_for,flash
 import Diffie_hellman as dh
 import Totp as totp
 
@@ -30,7 +30,7 @@ def signup():
             'password': password,
             'shared_secret': shared_secret
         }
-        
+        flash('Signup successful! Please log in now.', 'success')
         # Cleanup and redirect to home
         session.pop('alice_private', None)
         return redirect(url_for('home'))
